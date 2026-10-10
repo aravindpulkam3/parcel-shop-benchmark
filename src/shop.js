@@ -5,7 +5,8 @@ import { calculateOrder } from './pricing.js';
 
 export function createShop({ now = Date.now } = {}) {
   const products = new Map(catalog.map((product) => [product.id, product]));
-  const reservations = createReservations(createInventory(catalog), now);
+  const inventory = createInventory(catalog);
+  const reservations = createReservations(inventory);
 
   return {
     reserve: reservations.reserve,
