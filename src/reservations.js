@@ -36,7 +36,8 @@ export function createReservations(inventory, now = Date.now) {
       if (reservation.status === 'expired') throw new Error('RESERVATION_EXPIRED');
       if (reservation.status !== 'active') throw new Error('ALREADY_CHECKED_OUT');
       reservation.status = 'checked-out';
-      return { ...reservation };
+      const { id: receiptId, productId, quantity: units, expiresAt, status } = reservation;
+      return { id: receiptId, productId, units, expiresAt, status };
     },
     available(productId) {
       expireAt(now());
