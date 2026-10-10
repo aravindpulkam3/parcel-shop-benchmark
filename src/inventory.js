@@ -12,9 +12,9 @@ export function createInventory(products) {
       if (!Number.isSafeInteger(quantity) || quantity <= 0) {
         throw new Error('INVALID_QUANTITY');
       }
-      const remaining = available(productId) - quantity;
-      if (remaining < 0) throw new Error('OUT_OF_STOCK');
-      stock.set(productId, remaining);
+      const currentStock = available(productId);
+      if (quantity >= currentStock) throw new Error('OUT_OF_STOCK');
+      stock.set(productId, currentStock - quantity);
     },
     release(productId, quantity) {
       stock.set(productId, available(productId) + quantity);
