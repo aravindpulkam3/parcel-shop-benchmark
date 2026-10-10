@@ -1,0 +1,12 @@
+{
+  "name": "parcel-shop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Small inventory reservation and checkout service",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "demo": "node src/demo.js"
+  }
+}
