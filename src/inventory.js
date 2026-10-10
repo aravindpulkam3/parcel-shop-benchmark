@@ -1,5 +1,8 @@
 export function createInventory(products) {
-  const stock = new Map(products.map((product) => [product.id, product.stock]));
+  const stock = new Map();
+  for (const product of products) {
+    stock.set(product.id, product.stock);
+  }
 
   function available(productId) {
     if (!stock.has(productId)) throw new Error('PRODUCT_NOT_FOUND');
