@@ -12,10 +12,13 @@ Use Node.js 22 or later. `src/shop.js` exposes `createShop()`, with methods to
 reserve a product, check out a reservation, and inspect available stock.
 The demo exercises these methods without starting a server.
 
+Set `RESERVATION_TTL_SECONDS` to customize the reservation window. It defaults
+to 900 seconds and accepts whole seconds between 1 and 86,400.
+
 ## Behavior
 
 - Product IDs are exact catalog identifiers. Quantities must be positive integers.
-- Reservations allocate available stock immediately and last 15 minutes.
+- Reservations allocate available stock immediately and last 15 minutes by default.
 - Checkout before the expiration instant returns an order; checkout at or after
   expiration rejects the request and returns its stock.
 - Expired reservations are also reclaimed before a new reservation or stock read.
