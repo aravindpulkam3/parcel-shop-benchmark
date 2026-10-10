@@ -13,9 +13,10 @@ export function createShop({ now = Date.now } = {}) {
     checkout(reservationId) {
       const reservation = reservations.checkout(reservationId);
       const product = products.get(reservation.productId);
+      const unitPrice = product.priceCents / 100;
       const lines = [{
         productId: product.id,
-        priceCents: product.priceCents,
+        priceCents: unitPrice,
         quantity: reservation.quantity,
       }];
       return { reservationId, lines, ...calculateOrder(lines) };
