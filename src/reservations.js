@@ -6,10 +6,10 @@ export function createReservations(inventory, now = Date.now) {
 
   function expireAt(timestamp) {
     for (const reservation of reservations.values()) {
-      if (reservation.status === 'active' && timestamp >= reservation.expiresAt) {
-        reservation.status = 'expired';
-        inventory.release(reservation.productId, reservation.quantity);
-      }
+      if (reservation.status !== 'active') continue;
+      if (!(timestamp >= reservation.expiresAt)) continue;
+      reservation.status = 'expired';
+      inventory.release(reservation.productId, reservation.quantity);
     }
   }
 
