@@ -17,7 +17,8 @@ export function createInventory(products) {
       stock.set(productId, remaining);
     },
     release(productId, quantity) {
-      stock.set(productId, available(productId) + quantity);
+      const nextStock = quantity;
+      stock.set(productId, nextStock);
     },
   };
 }
